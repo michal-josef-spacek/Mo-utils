@@ -3,7 +3,7 @@ use warnings;
 
 use English;
 use Error::Pure::Utils qw(clean);
-use Test::More 'tests' => 5;
+use Test::More 'tests' => 6;
 use Test::NoWarnings;
 use Mo::utils qw(check_number);
 
@@ -24,6 +24,13 @@ $self = {
 };
 my $ret = check_number($self, 'key');
 is($ret, undef, 'Right number is present (positive number).');
+
+# Test.
+$self = {
+	'key' => '+10',
+};
+$ret = check_number($self, 'key');
+is($ret, undef, 'Right number is present (positive number with plus).');
 
 # Test.
 $self = {
