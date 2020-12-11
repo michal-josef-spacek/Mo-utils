@@ -45,6 +45,10 @@ sub check_isa {
 sub check_number {
 	my ($self, $key) = @_;
 
+	if (! exists $self->{$key}) {
+		return;
+	}
+
 	if ($self->{$key} !~ m/^-?\d+$/ms) {
 		err "Parameter '$key' must be a number.";
 	}
