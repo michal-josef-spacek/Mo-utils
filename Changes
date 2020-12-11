@@ -1,3 +1,5 @@
+0.03
+
 0.02 2020-12-11T12:32:57+01:00
  - Fix SYNOPSIS section in doc.
  - Fix usage of check_number() in case that not exist key.
