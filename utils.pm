@@ -15,14 +15,16 @@ our $VERSION = 0.02;
 sub check_array_object {
 	my ($self, $key, $class, $class_name) = @_;
 
-	if ($self->{$key}) {
-		if (ref $self->{$key} ne 'ARRAY') {
-			err "Parameter '".$key."' must be a array.";
-		} else {
-			foreach my $obj (@{$self->{$key}}) {
-				if (! $obj->isa($class)) {
-					err $class_name." isn't '".$class."' object.";
-				}
+	if (! exists $self->{$key}) {
+		return;
+	}
+
+	if (ref $self->{$key} ne 'ARRAY') {
+		err "Parameter '".$key."' must be a array.";
+	} else {
+		foreach my $obj (@{$self->{$key}}) {
+			if (! $obj->isa($class)) {
+				err $class_name." isn't '".$class."' object.";
 			}
 		}
 	}
