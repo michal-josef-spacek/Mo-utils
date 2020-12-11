@@ -4,7 +4,7 @@ use warnings;
 use English;
 use Error::Pure::Utils qw(clean);
 use Test::MockObject;
-use Test::More 'tests' => 4;
+use Test::More 'tests' => 5;
 use Test::NoWarnings;
 use Mo::utils qw(check_array_object);
 
@@ -41,3 +41,8 @@ $self = {
 };
 my $ret = check_array_object($self, 'key', 'Foo', 'Foo');
 is($ret, undef, 'Right structure.');
+
+# Test.
+$self = {};
+$ret = check_array_object($self, 'key', 'Foo', 'Foo');
+is($ret, undef, 'Right structure. No key.');
