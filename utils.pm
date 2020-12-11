@@ -91,7 +91,7 @@ Mo::utils - Mo utilities.
 
 =head1 SYNOPSIS
 
- use Mo::utils qw(check_array_object check_isa check_number check_required);
+ use Mo::utils qw(check_array_object check_isa check_number check_number_of_items check_required);
 
  check_array_object($self, $key, $class, $class_name);
  check_isa($self, $key, $class);
