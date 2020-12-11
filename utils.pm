@@ -49,7 +49,7 @@ sub check_number {
 		return;
 	}
 
-	if ($self->{$key} !~ m/^[-+]?\d+$/ms) {
+	if ($self->{$key} !~ m/^[-+]?\d+(\.\d+)?$/ms) {
 		err "Parameter '$key' must be a number.";
 	}
 
