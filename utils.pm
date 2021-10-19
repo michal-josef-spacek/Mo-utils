@@ -49,6 +49,10 @@ sub check_length {
 		return;
 	}
 
+	if (! defined $self->{$key}) {
+		return;
+	}
+
 	if (length $self->{$key} > $max_length) {
 		err "Parameter '$key' has length greater than '$max_length'.";
 	}
