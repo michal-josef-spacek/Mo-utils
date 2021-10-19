@@ -1,4 +1,4 @@
-0.04
+0.04 2021-10-19T12:59:57+02:00
  - Add check_length().
  - Add example for check_number_of_items().
  - Add test for check_isa(). Testing of another object.
