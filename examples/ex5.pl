@@ -10,10 +10,10 @@ use Mo::utils qw(check_length);
 my $self = {
         'key' => 'foo',
 };
-check_length($self, 'key', 2);
+check_length($self, 'key', 3);
 
 # Print out.
 print "ok\n";
 
 # Output like:
-# #Error [...utils.pm:?] Parameter 'key' has length greater than '2'.
+# ok

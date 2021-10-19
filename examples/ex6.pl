@@ -3,15 +3,17 @@
 use strict;
 use warnings;
 
-use Mo::utils qw(check_number);
+$Error::Pure::TYPE = 'Error';
+
+use Mo::utils qw(check_length);
 
 my $self = {
-        'key' => '10',
+        'key' => 'foo',
 };
-check_number($self, 'key');
+check_length($self, 'key', 2);
 
 # Print out.
 print "ok\n";
 
-# Output:
-# ok
+# Output like:
+# #Error [...utils.pm:?] Parameter 'key' has length greater than '2'.

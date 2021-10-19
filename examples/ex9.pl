@@ -15,10 +15,10 @@ $item1->mock('value', sub {
 	return 'value1',
 });
 
-# Item object #2.
+# Item object #1.
 my $item2 = Test::MockObject->new;
 $item2->mock('value', sub {
-	return 'value1',
+	return 'value2',
 });
 
 # Tested object.
@@ -39,4 +39,4 @@ check_number_of_items($self, 'list', 'value', 'Test', 'Item');
 print "ok\n";
 
 # Output like:
-# #Error [...utils.pm:?] Test for Item 'value1' has multiple values.
+# ok

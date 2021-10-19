@@ -302,6 +302,26 @@ Returns undef.
  my $self = {
          'key' => 'foo',
  };
+ check_length($self, 'key', 3);
+
+ # Print out.
+ print "ok\n";
+
+ # Output like:
+ # ok
+
+=head1 EXAMPLE6
+
+ use strict;
+ use warnings;
+
+ $Error::Pure::TYPE = 'Error';
+
+ use Mo::utils qw(check_length);
+
+ my $self = {
+         'key' => 'foo',
+ };
  check_length($self, 'key', 2);
 
  # Print out.
@@ -310,7 +330,7 @@ Returns undef.
  # Output like:
  # #Error [...utils.pm:?] Parameter 'key' has length greater than '2'.
 
-=head1 EXAMPLE6
+=head1 EXAMPLE7
 
  use strict;
  use warnings;
@@ -328,7 +348,7 @@ Returns undef.
  # Output:
  # ok
 
-=head1 EXAMPLE7
+=head1 EXAMPLE8
 
  use strict;
  use warnings;
@@ -348,7 +368,7 @@ Returns undef.
  # Output like:
  # #Error [...utils.pm:?] Parameter 'key' must be a number.
 
-=head1 EXAMPLE8
+=head1 EXAMPLE9
 
  use strict;
  use warnings;
@@ -391,7 +411,7 @@ Returns undef.
  # Output like:
  # ok
 
-=head1 EXAMPLE9
+=head1 EXAMPLE10
 
  use strict;
  use warnings;
@@ -434,7 +454,7 @@ Returns undef.
  # Output like:
  # #Error [...utils.pm:?] Test for Item 'value1' has multiple values.
 
-=head1 EXAMPLE10
+=head1 EXAMPLE11
 
  use strict;
  use warnings;
@@ -452,7 +472,7 @@ Returns undef.
  # Output:
  # ok
 
-=head1 EXAMPLE11
+=head1 EXAMPLE12
 
  use strict;
  use warnings;
