@@ -277,26 +277,6 @@ Returns undef.
 
  $Error::Pure::TYPE = 'Error';
 
- use Mo::utils qw(check_length);
-
- my $self = {
-         'key' => 'foo',
- };
- check_length($self, 'key', 2);
-
- # Print out.
- print "ok\n";
-
- # Output like:
- # #Error [...utils.pm:?] Parameter 'key' has length greater than '2'.
-
-=head1 EXAMPLE5
-
- use strict;
- use warnings;
-
- $Error::Pure::TYPE = 'Error';
-
  use Mo::utils qw(check_isa);
 
  my $self = {
@@ -309,6 +289,26 @@ Returns undef.
 
  # Output like:
  # #Error [...utils.pm:?] Parameter 'key' must be a 'Test::MockObject' object.
+
+=head1 EXAMPLE5
+
+ use strict;
+ use warnings;
+
+ $Error::Pure::TYPE = 'Error';
+
+ use Mo::utils qw(check_length);
+
+ my $self = {
+         'key' => 'foo',
+ };
+ check_length($self, 'key', 2);
+
+ # Print out.
+ print "ok\n";
+
+ # Output like:
+ # #Error [...utils.pm:?] Parameter 'key' has length greater than '2'.
 
 =head1 EXAMPLE6
 
