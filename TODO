@@ -1,6 +1,8 @@
 TODO
 ====
-2.
+2. Change name of subroutine check_number_of_items() to something better.
+Same with error message of this subroutine.
+3.
 
 Applied
 =======
