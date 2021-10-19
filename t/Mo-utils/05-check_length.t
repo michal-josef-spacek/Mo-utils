@@ -3,7 +3,7 @@ use warnings;
 
 use English;
 use Error::Pure::Utils qw(clean);
-use Test::More 'tests' => 4;
+use Test::More 'tests' => 5;
 use Test::NoWarnings;
 use Mo::utils qw(check_length);
 
@@ -25,3 +25,8 @@ is($ret, undef, 'Right length of value is present (foo and 3).');
 # Test.
 $ret = check_length($self, 'key', 4);
 is($ret, undef, 'Right length of value is present (foo and 4).');
+
+# Test.
+$self = {};
+$ret = check_length($self, 'key', 4);
+is($ret, undef, 'Right length of value is present (key not exists).');

@@ -45,6 +45,10 @@ sub check_isa {
 sub check_length {
 	my ($self, $key, $max_length) = @_;
 
+	if (! exists $self->{$key}) {
+		return;
+	}
+
 	if (length $self->{$key} > $max_length) {
 		err "Parameter '$key' has length greater than '$max_length'.";
 	}
