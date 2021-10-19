@@ -168,9 +168,9 @@ Returns undef.
 
  check_number_of_items($self, $list_method, $item_method, $object_name, $item_name);
 
-Check number of items. Must be 0 or 1. List items via C<$list_method> and get
-value via C<$item_method> method. C<$object_name> and C<$item_name> are
-variables for error output.
+Check amount of unique items defined by C<$item_method> method value.
+List items via C<$list_method> and get value via C<$item_method> method.
+C<$object_name> and C<$item_name> are variables for error output.
 
 Put error if check isn't ok.
 

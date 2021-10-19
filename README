@@ -58,9 +58,9 @@ SUBROUTINES
   "check_number_of_items"
      check_number_of_items($self, $list_method, $item_method, $object_name, $item_name);
 
-    Check number of items. Must be 0 or 1. List items via $list_method and
-    get value via $item_method method. $object_name and $item_name are
-    variables for error output.
+    Check amount of unique items defined by $item_method method value. List
+    items via $list_method and get value via $item_method method.
+    $object_name and $item_name are variables for error output.
 
     Put error if check isn't ok.
 
