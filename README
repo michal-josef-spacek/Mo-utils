@@ -2,10 +2,11 @@ NAME
     Mo::utils - Mo utilities.
 
 SYNOPSIS
-     use Mo::utils qw(check_array_object check_isa check_number check_number_of_items check_required);
+     use Mo::utils qw(check_array_object check_isa check_length check_number check_number_of_items check_required);
 
      check_array_object($self, $key, $class, $class_name);
      check_isa($self, $key, $class);
+     check_length($self, $key, $max_length);
      check_number($self, $key);
      check_number_of_items($self, $list_method, $item_method, $object_name, $item_name);
      check_required($self, $key);
@@ -29,6 +30,16 @@ SUBROUTINES
      check_isa($self, $key, $class);
 
     Check parameter defined by $key which is instance of $class or no.
+
+    Put error if check isn't ok.
+
+    Returns undef.
+
+  "check_length"
+     check_length($self, $key, $max_length);
+
+    Check length of value for parameter defined by $key. Maximum length is
+    defined by $max_length.
 
     Put error if check isn't ok.
 
@@ -71,6 +82,9 @@ ERRORS
 
      check_isa():
              Parameter '%s' must be a '%s' object.
+
+     check_length():
+             Parameter '%s' has length greater than '%s'.
 
      check_number():
              Parameter '%s' must a number.
@@ -147,6 +161,25 @@ EXAMPLE4
 
      $Error::Pure::TYPE = 'Error';
 
+     use Mo::utils qw(check_length);
+
+     my $self = {
+             'key' => 'foo',
+     };
+     check_length($self, 'key', 2);
+
+     # Print out.
+     print "ok\n";
+
+     # Output like:
+     # #Error [...utils.pm:?] Parameter 'key' has length greater than '2'.
+
+EXAMPLE5
+     use strict;
+     use warnings;
+
+     $Error::Pure::TYPE = 'Error';
+
      use Mo::utils qw(check_isa);
 
      my $self = {
@@ -160,7 +193,7 @@ EXAMPLE4
      # Output like:
      # #Error [...utils.pm:?] Parameter 'key' must be a 'Test::MockObject' object.
 
-EXAMPLE5
+EXAMPLE6
      use strict;
      use warnings;
 
@@ -177,7 +210,7 @@ EXAMPLE5
      # Output:
      # ok
 
-EXAMPLE6
+EXAMPLE7
      use strict;
      use warnings;
 
@@ -196,7 +229,7 @@ EXAMPLE6
      # Output like:
      # #Error [...utils.pm:?] Parameter 'key' must be a number.
 
-EXAMPLE7
+EXAMPLE8
      use strict;
      use warnings;
 
@@ -213,7 +246,7 @@ EXAMPLE7
      # Output:
      # ok
 
-EXAMPLE8
+EXAMPLE9
      use strict;
      use warnings;
 

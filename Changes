@@ -1,4 +1,5 @@
 0.04
+ - Add check_length().
 
 0.03 2020-12-11T14:10:51+01:00
  - Add support for '+10' syntax of number to check_number().

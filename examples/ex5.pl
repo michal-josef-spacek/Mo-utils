@@ -3,15 +3,17 @@
 use strict;
 use warnings;
 
-use Mo::utils qw(check_number);
+$Error::Pure::TYPE = 'Error';
+
+use Mo::utils qw(check_isa);
 
 my $self = {
-        'key' => '10',
+        'key' => 'foo',
 };
-check_number($self, 'key');
+check_isa($self, 'key', 'Test::MockObject');
 
 # Print out.
 print "ok\n";
 
-# Output:
-# ok
+# Output like:
+# #Error [...utils.pm:?] Parameter 'key' must be a 'Test::MockObject' object.

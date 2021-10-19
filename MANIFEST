@@ -7,6 +7,7 @@ examples/ex5.pl
 examples/ex6.pl
 examples/ex7.pl
 examples/ex8.pl
+examples/ex9.pl
 inc/Module/Install.pm
 inc/Module/Install/AuthorRequires.pm
 inc/Module/Install/AuthorTests.pm
@@ -28,9 +29,10 @@ t/Mo-utils/01-use.t
 t/Mo-utils/02-version.t
 t/Mo-utils/03-check_array_object.t
 t/Mo-utils/04-check_isa.t
-t/Mo-utils/05-check_number.t
-t/Mo-utils/06-check_number_of_items.t
-t/Mo-utils/07-check_required.t
+t/Mo-utils/05-check_length.t
+t/Mo-utils/06-check_number.t
+t/Mo-utils/07-check_number_of_items.t
+t/Mo-utils/08-check_required.t
 utils.pm
 xt/Mo-utils/01-pod_coverage.t
 xt/Mo-utils/02-pod.t

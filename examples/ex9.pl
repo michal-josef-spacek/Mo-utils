@@ -3,15 +3,18 @@
 use strict;
 use warnings;
 
+use Error::Pure;
 use Mo::utils qw(check_required);
 
+$Error::Pure::TYPE = 'Error';
+
 my $self = {
-        'key' => 'value',
+        'key' => undef,
 };
 check_required($self, 'key');
 
 # Print out.
 print "ok\n";
 
-# Output:
-# ok
+# Output like:
+# #Error [...utils.pm:?] Parameter 'key' is required.

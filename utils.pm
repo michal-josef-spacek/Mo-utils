@@ -8,7 +8,7 @@ use Error::Pure qw(err);
 use Readonly;
 
 Readonly::Array our @EXPORT_OK => qw(check_array_object check_isa
-	check_number check_number_of_items check_required);
+	check_length check_number check_number_of_items check_required);
 
 our $VERSION = 0.04;
 
@@ -37,6 +37,16 @@ sub check_isa {
 
 	if (! $self->{$key}->isa($class)) {
 		err "Parameter '$key' must be a '$class' object.";
+	}
+
+	return;
+}
+
+sub check_length {
+	my ($self, $key, $max_length) = @_;
+
+	if (length $self->{$key} > $max_length) {
+		err "Parameter '$key' has length greater than '$max_length'.";
 	}
 
 	return;
@@ -97,10 +107,11 @@ Mo::utils - Mo utilities.
 
 =head1 SYNOPSIS
 
- use Mo::utils qw(check_array_object check_isa check_number check_number_of_items check_required);
+ use Mo::utils qw(check_array_object check_isa check_length check_number check_number_of_items check_required);
 
  check_array_object($self, $key, $class, $class_name);
  check_isa($self, $key, $class);
+ check_length($self, $key, $max_length);
  check_number($self, $key);
  check_number_of_items($self, $list_method, $item_method, $object_name, $item_name);
  check_required($self, $key);
@@ -127,6 +138,17 @@ Returns undef.
  check_isa($self, $key, $class);
 
 Check parameter defined by C<$key> which is instance of C<$class> or no.
+
+Put error if check isn't ok.
+
+Returns undef.
+
+=head2 C<check_length>
+
+ check_length($self, $key, $max_length);
+
+Check length of value for parameter defined by C<$key>. Maximum length is
+defined by C<$max_length>.
 
 Put error if check isn't ok.
 
@@ -172,6 +194,9 @@ Returns undef.
 
  check_isa():
          Parameter '%s' must be a '%s' object.
+
+ check_length():
+         Parameter '%s' has length greater than '%s'.
 
  check_number():
          Parameter '%s' must a number.
@@ -252,6 +277,26 @@ Returns undef.
 
  $Error::Pure::TYPE = 'Error';
 
+ use Mo::utils qw(check_length);
+
+ my $self = {
+         'key' => 'foo',
+ };
+ check_length($self, 'key', 2);
+
+ # Print out.
+ print "ok\n";
+
+ # Output like:
+ # #Error [...utils.pm:?] Parameter 'key' has length greater than '2'.
+
+=head1 EXAMPLE5
+
+ use strict;
+ use warnings;
+
+ $Error::Pure::TYPE = 'Error';
+
  use Mo::utils qw(check_isa);
 
  my $self = {
@@ -265,7 +310,7 @@ Returns undef.
  # Output like:
  # #Error [...utils.pm:?] Parameter 'key' must be a 'Test::MockObject' object.
 
-=head1 EXAMPLE5
+=head1 EXAMPLE6
 
  use strict;
  use warnings;
@@ -283,7 +328,7 @@ Returns undef.
  # Output:
  # ok
 
-=head1 EXAMPLE6
+=head1 EXAMPLE7
 
  use strict;
  use warnings;
@@ -303,7 +348,7 @@ Returns undef.
  # Output like:
  # #Error [...utils.pm:?] Parameter 'key' must be a number.
 
-=head1 EXAMPLE7
+=head1 EXAMPLE8
 
  use strict;
  use warnings;
@@ -321,7 +366,7 @@ Returns undef.
  # Output:
  # ok
 
-=head1 EXAMPLE8
+=head1 EXAMPLE9
 
  use strict;
  use warnings;

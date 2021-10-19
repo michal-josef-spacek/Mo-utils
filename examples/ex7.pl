@@ -3,15 +3,17 @@
 use strict;
 use warnings;
 
-use Mo::utils qw(check_required);
+$Error::Pure::TYPE = 'Error';
+
+use Mo::utils qw(check_number);
 
 my $self = {
-        'key' => 'value',
+        'key' => 'foo',
 };
-check_required($self, 'key');
+check_number($self, 'key');
 
 # Print out.
 print "ok\n";
 
-# Output:
-# ok
+# Output like:
+# #Error [...utils.pm:?] Parameter 'key' must be a number.
