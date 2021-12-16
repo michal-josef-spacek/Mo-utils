@@ -7,7 +7,7 @@ use warnings;
 use Error::Pure qw(err);
 use Readonly;
 
-Readonly::Array our @EXPORT_OK => qw(check_array_object check_isa
+Readonly::Array our @EXPORT_OK => qw(check_array_object check_bool check_isa
 	check_length check_number check_number_of_items check_required);
 
 our $VERSION = 0.06;
@@ -27,6 +27,20 @@ sub check_array_object {
 				err $class_name." isn't '".$class."' object.";
 			}
 		}
+	}
+
+	return;
+}
+
+sub check_bool {
+	my ($self, $key) = @_;
+
+	if (! exists $self->{$key}) {
+		return;
+	}
+
+	if ($self->{$key} !~ m/^\d+$/ms || ($self->{$key} != 0 && $self->{$key} != 1)) {
+		err "Parameter '".$key."' must be a bool (0/1).";
 	}
 
 	return;
@@ -115,9 +129,10 @@ Mo::utils - Mo utilities.
 
 =head1 SYNOPSIS
 
- use Mo::utils qw(check_array_object check_isa check_length check_number check_number_of_items check_required);
+ use Mo::utils qw(check_array_object check_bool check_isa check_length check_number check_number_of_items check_required);
 
  check_array_object($self, $key, $class, $class_name);
+ check_bool($self, $key);
  check_isa($self, $key, $class);
  check_length($self, $key, $max_length);
  check_number($self, $key);
@@ -136,6 +151,16 @@ Mo utilities for checking of data objects.
 
 Check parameter defined by C<$key> which is reference to array with instances
 of some object type (C<$class>). C<$class_name> is used to error message.
+
+Put error if check isn't ok.
+
+Returns undef.
+
+=head2 C<check_bool>
+
+ check_bool($self, $key);
+
+Check parameter defined by C<$key> if value is bool or not.
 
 Put error if check isn't ok.
 
@@ -199,6 +224,9 @@ Returns undef.
  check_array_object():
          Parameter '%s' must be a array.
          %s isn't '%s' object.
+
+ check_bool():
+         Parameter '%s' must be a bool (0/1).
 
  check_isa():
          Parameter '%s' must be a '%s' object.
