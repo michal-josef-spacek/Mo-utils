@@ -3,12 +3,12 @@
 use strict;
 use warnings;
 
-use Mo::utils qw(check_array);
+use Mo::utils qw(check_required);
 
 my $self = {
-        'key' => ['foo'],
+        'key' => 'value',
 };
-check_array($self, 'key');
+check_required($self, 'key');
 
 # Print out.
 print "ok\n";

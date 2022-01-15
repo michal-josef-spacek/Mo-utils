@@ -4,17 +4,17 @@ use strict;
 use warnings;
 
 use Error::Pure;
-use Mo::utils qw(check_array);
+use Mo::utils qw(check_required);
 
 $Error::Pure::TYPE = 'Error';
 
 my $self = {
-        'key' => 'foo',
+        'key' => undef,
 };
-check_array($self, 'key');
+check_required($self, 'key');
 
 # Print out.
 print "ok\n";
 
 # Output like:
-# #Error [..utils.pm:?] Parameter 'key' must be a array.
+# #Error [...utils.pm:?] Parameter 'key' is required.
