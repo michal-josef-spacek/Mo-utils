@@ -57,6 +57,10 @@ sub check_bool {
 sub check_isa {
 	my ($self, $key, $class) = @_;
 
+	if (! defined $self->{$key}) {
+		return;
+	}
+
 	if (! $self->{$key}->isa($class)) {
 		err "Parameter '$key' must be a '$class' object.";
 	}
