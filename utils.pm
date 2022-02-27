@@ -20,7 +20,10 @@ sub check_array {
 	}
 
 	if (ref $self->{$key} ne 'ARRAY') {
-		err "Parameter '".$key."' must be a array.";
+		err "Parameter '".$key."' must be a array.",
+			'Value', $self->{$key},
+			'Reference', (ref $self->{$key}),
+		;
 	}
 
 	return;
@@ -48,7 +51,9 @@ sub check_bool {
 	}
 
 	if ($self->{$key} !~ m/^\d+$/ms || ($self->{$key} != 0 && $self->{$key} != 1)) {
-		err "Parameter '".$key."' must be a bool (0/1).";
+		err "Parameter '$key' must be a bool (0/1).",
+			'Value', $self->{$key},
+		;
 	}
 
 	return;
@@ -62,7 +67,10 @@ sub check_isa {
 	}
 
 	if (! $self->{$key}->isa($class)) {
-		err "Parameter '$key' must be a '$class' object.";
+		err "Parameter '$key' must be a '$class' object.",
+			'Value', $self->{$key},
+			'Reference', (ref $self->{$key}),
+		;
 	}
 
 	return;
@@ -80,7 +88,9 @@ sub check_length {
 	}
 
 	if (length $self->{$key} > $max_length) {
-		err "Parameter '$key' has length greater than '$max_length'.";
+		err "Parameter '$key' has length greater than '$max_length'.",
+			'Value', $self->{$key},
+		;
 	}
 
 	return;
@@ -94,7 +104,9 @@ sub check_number {
 	}
 
 	if ($self->{$key} !~ m/^[-+]?\d+(\.\d+)?$/ms) {
-		err "Parameter '$key' must be a number.";
+		err "Parameter '$key' must be a number.",
+			'Value', $self->{$key},
+		;
 	}
 
 	return;
@@ -246,6 +258,8 @@ Returns undef.
 
  check_array():
          Parameter '%s' must be a array.
+                 Value: %s
+                 Reference: %s
 
  check_array_object():
          Parameter '%s' must be a array.
@@ -253,15 +267,20 @@ Returns undef.
 
  check_bool():
          Parameter '%s' must be a bool (0/1).
+                 Value: %s
 
  check_isa():
          Parameter '%s' must be a '%s' object.
+                 Value: %s
+                 Reference: %s
 
  check_length():
          Parameter '%s' has length greater than '%s'.
+			'Value', $self->{$key},
 
  check_number():
          Parameter '%s' must a number.
+                 Value: %s
 
  check_number_of_items():
          %s for %s '%s' has multiple values.
