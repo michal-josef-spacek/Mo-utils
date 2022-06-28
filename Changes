@@ -1,4 +1,5 @@
 0.08
+ - Fix bless in mock objects in tests.
  - Improve error in check_isa() to not present 'Reference' if ref $value eq
    ''.
 

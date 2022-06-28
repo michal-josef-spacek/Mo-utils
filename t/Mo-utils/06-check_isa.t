@@ -22,7 +22,7 @@ clean();
 # Test.
 my $mock = Test::MockObject->new;
 $mock->fake_module('Bar',
-	'new' => sub { return $self, 'Bar'; },
+	'new' => sub { return bless $self, 'Bar'; },
 );
 my $bar = Bar->new;
 $self = {
@@ -38,7 +38,7 @@ clean();
 # Test.
 $mock = Test::MockObject->new;
 $mock->fake_module('Foo',
-	'new' => sub { return $self, 'Foo'; },
+	'new' => sub { return bless $self, 'Foo'; },
 );
 my $foo = Foo->new;
 $self = {
