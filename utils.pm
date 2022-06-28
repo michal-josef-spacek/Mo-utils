@@ -68,7 +68,6 @@ sub check_isa {
 
 	if (! $self->{$key}->isa($class)) {
 		err "Parameter '$key' must be a '$class' object.",
-			'Value', $self->{$key},
 			(ref $self->{$key} ne '') ? (
 				'Reference', (ref $self->{$key}),
 			) : (),
