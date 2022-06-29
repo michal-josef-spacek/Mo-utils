@@ -6,6 +6,7 @@ use warnings;
 
 use Error::Pure qw(err);
 use Readonly;
+use Scalar::Util qw(blessed);
 
 Readonly::Array our @EXPORT_OK => qw(check_array check_array_object check_bool
 	check_isa check_length check_number check_number_of_items check_required);
@@ -66,11 +67,23 @@ sub check_isa {
 		return;
 	}
 
-	if (! $self->{$key}->isa($class)) {
+	if (! blessed($self->{$key})) {
 		err "Parameter '$key' must be a '$class' object.",
+
+			# Only, if value is scalar.
+			(ref $self->{$key} eq '') ? (
+				'Value', $self->{$key},
+			) : (),
+
+			# Only if value is reference.
 			(ref $self->{$key} ne '') ? (
 				'Reference', (ref $self->{$key}),
 			) : (),
+	}
+
+	if (! $self->{$key}->isa($class)) {
+		err "Parameter '$key' must be a '$class' object.",
+			'Reference', (ref $self->{$key}),
 		;
 	}
 
