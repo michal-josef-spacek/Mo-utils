@@ -1,3 +1,5 @@
+0.09
+
 0.08 2022-06-29T19:10:33+02:00
  - Add support for test of errors structure.
  - Fix error value in case of instance of object.
