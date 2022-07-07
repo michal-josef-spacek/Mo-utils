@@ -117,6 +117,10 @@ sub check_number {
 		return;
 	}
 
+	if (! defined $self->{$key}) {
+		return;
+	}
+
 	if ($self->{$key} !~ m/^[-+]?\d+(\.\d+)?$/ms) {
 		err "Parameter '$key' must be a number.",
 			'Value', $self->{$key},

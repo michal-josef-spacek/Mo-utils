@@ -1,4 +1,5 @@
 0.09
+ - Skip undefined value in check_number().
 
 0.08 2022-06-29T19:10:33+02:00
  - Add support for test of errors structure.
