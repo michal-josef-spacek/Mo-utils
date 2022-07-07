@@ -1,3 +1,5 @@
+0.10
+
 0.09 2022-07-07T12:01:25+02:00
  - Skip undefined value in check_number().
 
