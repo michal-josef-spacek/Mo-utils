@@ -2,7 +2,6 @@ TODO
 ====
 2. Change name of subroutine check_number_of_items() to something better.
 Same with error message of this subroutine.
-3. Add examples for check_bool() to doc.
 4. Add tests for error parameters (e.g. in check_isa()).
 5.
 
@@ -10,3 +9,6 @@ Applied
 =======
 1. Priklad na check_number_of_items() do dokumentace
 OK [20211019] skim
+
+3. Add examples for check_bool() to doc.
+OK [20220728] skim

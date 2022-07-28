@@ -3,13 +3,12 @@
 use strict;
 use warnings;
 
-use Mo::utils qw(check_bool);
-use Test::MockObject;
+use Mo::utils qw(check_required);
 
 my $self = {
-        'key' => 1,
+        'key' => 'value',
 };
-check_bool($self, 'key');
+check_required($self, 'key');
 
 # Print out.
 print "ok\n";

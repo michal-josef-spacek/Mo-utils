@@ -1,4 +1,5 @@
 0.10
+ - Add examples for check_bool() to doc.
  - Fix doc in ERRORS section.
 
 0.09 2022-07-07T12:01:25+02:00

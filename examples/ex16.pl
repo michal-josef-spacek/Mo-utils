@@ -4,17 +4,17 @@ use strict;
 use warnings;
 
 use Error::Pure;
-use Mo::utils qw(check_bool);
+use Mo::utils qw(check_required);
 
 $Error::Pure::TYPE = 'Error';
 
 my $self = {
-        'key' => 'bad',
+        'key' => undef,
 };
-check_bool($self, 'key');
+check_required($self, 'key');
 
 # Print out.
 print "ok\n";
 
 # Output like:
-# #Error [..utils.pm:?] Parameter 'key' must be a bool (0/1).
+# #Error [...utils.pm:?] Parameter 'key' is required.
