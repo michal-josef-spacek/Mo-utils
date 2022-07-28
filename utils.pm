@@ -294,7 +294,7 @@ Returns undef.
 
  check_length():
          Parameter '%s' has length greater than '%s'.
-			'Value', $self->{$key},
+			Value: %s
 
  check_number():
          Parameter '%s' must a number.
