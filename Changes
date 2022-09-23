@@ -1,4 +1,5 @@
 0.12
+ - Add check_code().
 
 0.11 2022-08-25T17:56:53+02:00
  - Regen README file.
