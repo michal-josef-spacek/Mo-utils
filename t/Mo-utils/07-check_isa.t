@@ -3,10 +3,10 @@ use warnings;
 
 use English;
 use Error::Pure::Utils qw(clean err_msg);
+use Mo::utils qw(check_isa);
 use Test::MockObject;
 use Test::More 'tests' => 7;
 use Test::NoWarnings;
-use Mo::utils qw(check_isa);
 
 # Test.
 my $self = {

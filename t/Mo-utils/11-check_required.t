@@ -3,9 +3,9 @@ use warnings;
 
 use English;
 use Error::Pure::Utils qw(clean);
+use Mo::utils qw(check_array_object check_required);
 use Test::More 'tests' => 4;
 use Test::NoWarnings;
-use Mo::utils qw(check_array_object check_required);
 
 # Test.
 my $self = {

@@ -3,9 +3,9 @@ use warnings;
 
 use English;
 use Error::Pure::Utils qw(clean);
+use Mo::utils qw(check_length);
 use Test::More 'tests' => 6;
 use Test::NoWarnings;
-use Mo::utils qw(check_length);
 
 # Test.
 my $self = {
