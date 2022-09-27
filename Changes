@@ -1,4 +1,4 @@
-0.13
+0.13 2022-09-27T19:36:15+02:00
  - Add another error for situation if key doesn't exists.
  - Add tests for undefined values.
  - Sort modules usage in tests.
