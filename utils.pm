@@ -167,6 +167,10 @@ sub check_number_of_items {
 sub check_required {
 	my ($self, $key) = @_;
 
+	if (! exists $self->{$key}) {
+		err "Parameter '$key' doesn't exist.";
+	}
+
 	if (! defined $self->{$key}) {
 		err "Parameter '$key' is required.";
 	}
@@ -336,6 +340,7 @@ Returns undef.
          %s for %s '%s' has multiple values.
 
  check_required():
+         Parameter '%s' doesn't exist.
          Parameter '%s' is required.
 
 =head1 EXAMPLE1
