@@ -48,8 +48,12 @@ is($ret, undef, 'Right number is present (negative number).');
 
 # Test.
 $self = {};
-$ret = check_number($self, 'key');
-is($ret, undef, 'No key, everything is ok.');
+eval {
+	check_number($self, 'key', 'Foo');
+};
+is($EVAL_ERROR, "Parameter 'key' doesn't exist.\n",
+	"Parameter 'key' doesn't exist.");
+clean();
 
 # Test.
 $self = {

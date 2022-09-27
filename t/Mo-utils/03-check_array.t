@@ -5,7 +5,7 @@ use English;
 use Error::Pure::Utils qw(clean);
 use Mo::utils qw(check_array);
 use Test::MockObject;
-use Test::More 'tests' => 3;
+use Test::More 'tests' => 4;
 use Test::NoWarnings;
 
 # Test.
@@ -25,3 +25,12 @@ $self = {
 };
 my $ret = check_array($self, 'key');
 is($ret, undef, 'Right structure.');
+
+# Test.
+$self = {};
+eval {
+	check_array($self, 'key');
+};
+is($EVAL_ERROR, "Parameter 'key' doesn't exist.\n",
+	"Parameter 'key' doesn't exist.");
+clean();

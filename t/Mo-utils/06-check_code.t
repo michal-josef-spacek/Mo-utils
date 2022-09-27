@@ -4,7 +4,7 @@ use warnings;
 use English;
 use Error::Pure::Utils qw(clean);
 use Mo::utils qw(check_code);
-use Test::More 'tests' => 3;
+use Test::More 'tests' => 4;
 use Test::NoWarnings;
 
 # Test.
@@ -23,4 +23,13 @@ eval {
 };
 is($EVAL_ERROR, "Parameter 'key' must be a code.\n",
 	"Parameter 'key' must be a code.");
+clean();
+
+# Test.
+$self = {};
+eval {
+	check_code($self, 'key');
+};
+is($EVAL_ERROR, "Parameter 'key' doesn't exist.\n",
+	"Parameter 'key' doesn't exist.");
 clean();

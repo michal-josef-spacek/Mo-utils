@@ -44,5 +44,9 @@ is($ret, undef, 'Right structure.');
 
 # Test.
 $self = {};
-$ret = check_array_object($self, 'key', 'Foo', 'Foo');
-is($ret, undef, 'Right structure. No key.');
+eval {
+	check_array_object($self, 'key', 'Foo', 'Foo');
+};
+is($EVAL_ERROR, "Parameter 'key' doesn't exist.\n",
+	"Parameter 'key' doesn't exist.");
+clean();

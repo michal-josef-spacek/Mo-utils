@@ -28,8 +28,12 @@ is($ret, undef, 'Right length of value is present (foo and 4).');
 
 # Test.
 $self = {};
-$ret = check_length($self, 'key', 4);
-is($ret, undef, 'Right length of value is present (key not exists).');
+eval {
+	check_length($self, 'key', 4);
+};
+is($EVAL_ERROR, "Parameter 'key' doesn't exist.\n",
+	"Parameter 'key' doesn't exist.");
+clean();
 
 # Test.
 $self = {

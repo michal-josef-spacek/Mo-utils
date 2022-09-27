@@ -18,7 +18,7 @@ sub check_array {
 	my ($self, $key) = @_;
 
 	if (! exists $self->{$key}) {
-		return;
+		err "Parameter '$key' doesn't exist.";
 	}
 
 	if (ref $self->{$key} ne 'ARRAY') {
@@ -48,9 +48,7 @@ sub check_array_object {
 sub check_bool {
 	my ($self, $key) = @_;
 
-	if (! exists $self->{$key}) {
-		return;
-	}
+	_check_key($self, $key) && return;
 
 	if ($self->{$key} !~ m/^\d+$/ms || ($self->{$key} != 0 && $self->{$key} != 1)) {
 		err "Parameter '$key' must be a bool (0/1).",
@@ -64,9 +62,7 @@ sub check_bool {
 sub check_code {
 	my ($self, $key) = @_;
 
-	if (! defined $self->{$key}) {
-		return;
-	}
+	_check_key($self, $key) && return;
 
 	if (ref $self->{$key} ne 'CODE') {
 		err "Parameter '$key' must be a code.",
@@ -80,9 +76,7 @@ sub check_code {
 sub check_isa {
 	my ($self, $key, $class) = @_;
 
-	if (! defined $self->{$key}) {
-		return;
-	}
+	_check_key($self, $key) && return;
 
 	if (! blessed($self->{$key})) {
 		err "Parameter '$key' must be a '$class' object.",
@@ -110,13 +104,7 @@ sub check_isa {
 sub check_length {
 	my ($self, $key, $max_length) = @_;
 
-	if (! exists $self->{$key}) {
-		return;
-	}
-
-	if (! defined $self->{$key}) {
-		return;
-	}
+	_check_key($self, $key) && return;
 
 	if (length $self->{$key} > $max_length) {
 		err "Parameter '$key' has length greater than '$max_length'.",
@@ -130,13 +118,7 @@ sub check_length {
 sub check_number {
 	my ($self, $key) = @_;
 
-	if (! exists $self->{$key}) {
-		return;
-	}
-
-	if (! defined $self->{$key}) {
-		return;
-	}
+	_check_key($self, $key) && return;
 
 	if ($self->{$key} !~ m/^[-+]?\d+(\.\d+)?$/ms) {
 		err "Parameter '$key' must be a number.",
@@ -176,6 +158,20 @@ sub check_required {
 	}
 
 	return;
+}
+
+sub _check_key {
+	my ($self, $key) = @_;
+
+	if (! exists $self->{$key}) {
+		err "Parameter '$key' doesn't exist.";
+	}
+
+	if (! defined $self->{$key}) {
+		return 1;
+	}
+
+	return 0;
 }
 
 1;
@@ -307,32 +303,39 @@ Returns undef.
 =head1 ERRORS
 
  check_array():
+         Parameter '%s' doesn't exist.
          Parameter '%s' must be a array.
                  Value: %s
                  Reference: %s
 
  check_array_object():
+         Parameter '%s' doesn't exist.
          Parameter '%s' must be a array.
          %s isn't '%s' object.
 
  check_bool():
+         Parameter '%s' doesn't exist.
          Parameter '%s' must be a bool (0/1).
                  Value: %s
 
  check_code():
+         Parameter '%s' doesn't exist.
          Parameter '%s' must be a code.
                  Value: %s
 
  check_isa():
+         Parameter '%s' doesn't exist.
          Parameter '%s' must be a '%s' object.
                  Value: %s
                  Reference: %s
 
  check_length():
+         Parameter '%s' doesn't exist.
          Parameter '%s' has length greater than '%s'.
 			Value: %s
 
  check_number():
+         Parameter '%s' doesn't exist.
          Parameter '%s' must a number.
                  Value: %s
 

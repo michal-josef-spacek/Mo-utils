@@ -5,7 +5,7 @@ use English;
 use Error::Pure::Utils qw(clean err_msg);
 use Mo::utils qw(check_isa);
 use Test::MockObject;
-use Test::More 'tests' => 7;
+use Test::More 'tests' => 8;
 use Test::NoWarnings;
 
 # Test.
@@ -107,3 +107,12 @@ $self = {
 };
 $ret = check_isa($self, 'key', 'Foo');
 is($ret, undef, "Value is undefined, that's ok.");
+
+# Test.
+$self = {};
+eval {
+	check_isa($self, 'key', 'Foo');
+};
+is($EVAL_ERROR, "Parameter 'key' doesn't exist.\n",
+	"Parameter 'key' doesn't exist.");
+clean();
