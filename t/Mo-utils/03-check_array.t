@@ -5,7 +5,7 @@ use English;
 use Error::Pure::Utils qw(clean);
 use Mo::utils qw(check_array);
 use Test::MockObject;
-use Test::More 'tests' => 4;
+use Test::More 'tests' => 5;
 use Test::NoWarnings;
 
 # Test.
@@ -33,4 +33,15 @@ eval {
 };
 is($EVAL_ERROR, "Parameter 'key' doesn't exist.\n",
 	"Parameter 'key' doesn't exist.");
+clean();
+
+# Test.
+$self = {
+	'key' => undef,
+};
+eval {
+	check_array($self, 'key');
+};
+is($EVAL_ERROR, "Parameter 'key' must be a array.\n",
+	"Parameter 'key' must be a array.");
 clean();

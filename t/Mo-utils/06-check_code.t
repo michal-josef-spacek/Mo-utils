@@ -4,7 +4,7 @@ use warnings;
 use English;
 use Error::Pure::Utils qw(clean);
 use Mo::utils qw(check_code);
-use Test::More 'tests' => 4;
+use Test::More 'tests' => 5;
 use Test::NoWarnings;
 
 # Test.
@@ -33,3 +33,10 @@ eval {
 is($EVAL_ERROR, "Parameter 'key' doesn't exist.\n",
 	"Parameter 'key' doesn't exist.");
 clean();
+
+# Test.
+$self = {
+	'key' => undef,
+};
+$ret = check_code($self, 'key');
+is($ret, undef, 'Right undefined value.');
