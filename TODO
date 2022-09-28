@@ -3,7 +3,8 @@ TODO
 2. Change name of subroutine check_number_of_items() to something better.
 Same with error message of this subroutine.
 4. Add tests for error parameters (e.g. in check_isa()).
-5.
+5. Add some integration tests (with Mo). How?
+6.
 
 Applied
 =======

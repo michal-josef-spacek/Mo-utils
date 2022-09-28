@@ -18,7 +18,7 @@ sub check_array {
 	my ($self, $key) = @_;
 
 	if (! exists $self->{$key}) {
-		err "Parameter '$key' doesn't exist.";
+		return;
 	}
 
 	if (ref $self->{$key} ne 'ARRAY') {
@@ -149,11 +149,7 @@ sub check_number_of_items {
 sub check_required {
 	my ($self, $key) = @_;
 
-	if (! exists $self->{$key}) {
-		err "Parameter '$key' doesn't exist.";
-	}
-
-	if (! defined $self->{$key}) {
+	if (! exists $self->{$key} || ! defined $self->{$key}) {
 		err "Parameter '$key' is required.";
 	}
 
@@ -163,11 +159,7 @@ sub check_required {
 sub _check_key {
 	my ($self, $key) = @_;
 
-	if (! exists $self->{$key}) {
-		err "Parameter '$key' doesn't exist.";
-	}
-
-	if (! defined $self->{$key}) {
+	if (! exists $self->{$key} || ! defined $self->{$key}) {
 		return 1;
 	}
 
@@ -303,39 +295,32 @@ Returns undef.
 =head1 ERRORS
 
  check_array():
-         Parameter '%s' doesn't exist.
          Parameter '%s' must be a array.
                  Value: %s
                  Reference: %s
 
  check_array_object():
-         Parameter '%s' doesn't exist.
          Parameter '%s' must be a array.
          %s isn't '%s' object.
 
  check_bool():
-         Parameter '%s' doesn't exist.
          Parameter '%s' must be a bool (0/1).
                  Value: %s
 
  check_code():
-         Parameter '%s' doesn't exist.
          Parameter '%s' must be a code.
                  Value: %s
 
  check_isa():
-         Parameter '%s' doesn't exist.
          Parameter '%s' must be a '%s' object.
                  Value: %s
                  Reference: %s
 
  check_length():
-         Parameter '%s' doesn't exist.
          Parameter '%s' has length greater than '%s'.
 			Value: %s
 
  check_number():
-         Parameter '%s' doesn't exist.
          Parameter '%s' must a number.
                  Value: %s
 
@@ -343,7 +328,6 @@ Returns undef.
          %s for %s '%s' has multiple values.
 
  check_required():
-         Parameter '%s' doesn't exist.
          Parameter '%s' is required.
 
 =head1 EXAMPLE1

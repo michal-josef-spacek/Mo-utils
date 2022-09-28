@@ -110,9 +110,5 @@ is($ret, undef, "Value is undefined, that's ok.");
 
 # Test.
 $self = {};
-eval {
-	check_isa($self, 'key', 'Foo');
-};
-is($EVAL_ERROR, "Parameter 'key' doesn't exist.\n",
-	"Parameter 'key' doesn't exist.");
-clean();
+$ret = check_isa($self, 'key', 'Foo');
+is($ret, undef, 'Right not exist key.');

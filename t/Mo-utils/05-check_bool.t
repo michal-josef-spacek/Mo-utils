@@ -23,12 +23,8 @@ is($ret, undef, 'Right bool value.');
 
 # Test.
 $self = {};
-eval {
-	check_bool($self, 'key');
-};
-is($EVAL_ERROR, "Parameter 'key' doesn't exist.\n",
-	"Parameter 'key' doesn't exist.");
-clean();
+$ret = check_bool($self, 'key');
+is($ret, undef, 'Right not exist key.');
 
 # Test.
 $self = {

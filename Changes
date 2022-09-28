@@ -1,4 +1,5 @@
 0.14
+ - Revert 0.13 version situation if key doesn't exist. It's not useful with Mo.
 
 0.13 2022-09-27T19:36:15+02:00
  - Add another error for situation if key doesn't exists.

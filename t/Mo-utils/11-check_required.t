@@ -23,8 +23,8 @@ $self = {};
 eval {
 	check_required($self, 'key');
 };
-is($EVAL_ERROR, "Parameter 'key' doesn't exist.\n",
-	"Parameter 'key' doesn't exist.");
+is($EVAL_ERROR, "Parameter 'key' is required.\n",
+	"Parameter 'key' is required.");
 clean();
 
 # Test.

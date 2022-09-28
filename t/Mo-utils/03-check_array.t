@@ -28,12 +28,8 @@ is($ret, undef, 'Right structure.');
 
 # Test.
 $self = {};
-eval {
-	check_array($self, 'key');
-};
-is($EVAL_ERROR, "Parameter 'key' doesn't exist.\n",
-	"Parameter 'key' doesn't exist.");
-clean();
+$ret = check_array($self, 'key');
+is($ret, undef, 'Right not exist key.');
 
 # Test.
 $self = {
