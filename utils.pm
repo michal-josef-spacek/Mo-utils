@@ -775,7 +775,8 @@ Returns undef.
 
 L<Exporter>,
 L<Error::Pure>,
-L<Readonly>.
+L<Readonly>,
+L<Scalar::Util>.
 
 =head1 SEE ALSO
 

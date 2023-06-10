@@ -531,7 +531,7 @@ EXAMPLE18
      # #Error [...utils.pm:?] Parameter 'key' is required.
 
 DEPENDENCIES
-    Exporter, Error::Pure, Readonly.
+    Exporter, Error::Pure, Readonly, Scalar::Util.
 
 SEE ALSO
     Mo  Micro Objects. Mo is less.
