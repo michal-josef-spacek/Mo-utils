@@ -140,7 +140,6 @@ ERRORS
              %s for %s '%s' has multiple values.
 
      check_required():
-             Parameter '%s' doesn't exist.
              Parameter '%s' is required.
 
 EXAMPLE1
