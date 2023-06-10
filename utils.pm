@@ -871,6 +871,10 @@ L<Scalar::Util>.
 
 Micro Objects. Mo is less.
 
+=item L<Mo::utils::Language>
+
+Mo language utilities.
+
 =back
 
 =head1 REPOSITORY

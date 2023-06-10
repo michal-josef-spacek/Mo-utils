@@ -590,6 +590,9 @@ DEPENDENCIES
 SEE ALSO
     Mo  Micro Objects. Mo is less.
 
+    Mo::utils::Language
+        Mo language utilities.
+
 REPOSITORY
     <https://github.com/michal-josef-spacek/Mo-utils>
 
