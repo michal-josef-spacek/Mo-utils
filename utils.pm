@@ -5,12 +5,13 @@ use strict;
 use warnings;
 
 use Error::Pure qw(err);
+use List::Util qw(none);
 use Readonly;
 use Scalar::Util qw(blessed);
 
 Readonly::Array our @EXPORT_OK => qw(check_array check_array_object check_bool
 	check_code check_isa check_length check_number check_number_of_items
-	check_required);
+	check_required check_strings);
 
 our $VERSION = 0.15;
 
@@ -156,6 +157,27 @@ sub check_required {
 	return;
 }
 
+sub check_strings {
+	my ($self, $key, $strings_ar) = @_;
+
+	_check_key($self, $key) && return;
+
+	if (! defined $strings_ar) {
+		err "Parameter '$key' must have strings definition.";
+	}
+	if (ref $strings_ar ne 'ARRAY') {
+		err "Parameter '$key' must have right string definition.";
+	}
+	if (none { $self->{$key} eq $_ } @{$strings_ar}) {
+		err "Parameter '$key' must be one of defined strings.",
+			'String', $self->{$key},
+			'Possible strings', (join ', ', @{$strings_ar}),
+		;
+	}
+
+	return;
+}
+
 sub _check_key {
 	my ($self, $key) = @_;
 
@@ -191,6 +213,7 @@ Mo::utils - Mo utilities.
  check_number($self, $key);
  check_number_of_items($self, $list_method, $item_method, $object_name, $item_name);
  check_required($self, $key);
+ check_strings($self, $key, $strings_ar);
 
 =head1 DESCRIPTION
 
@@ -292,6 +315,17 @@ Put error if check isn't ok.
 
 Returns undef.
 
+=head2 C<check_strings>
+
+ check_strings($self, $key, $strings_ar);
+
+Check parameter if it is correct string from strings list.
+
+Put error if strings definition is undef or not list of strings.
+Put error if check isn't ok.
+
+Returns undef.
+
 =head1 ERRORS
 
  check_array():
@@ -329,6 +363,13 @@ Returns undef.
 
  check_required():
          Parameter '%s' is required.
+
+ check_strings():
+         Parameter '%s' must have strings definition.
+         Parameter '%s' must have right string definition.
+         Parameter '%s' must be one of defined strings.
+                 String: %s
+                 Possible strings: %s
 
 =head1 EXAMPLE1
 
@@ -771,10 +812,54 @@ Returns undef.
  # Output like:
  # #Error [...utils.pm:?] Parameter 'key' is required.
 
+=head1 EXAMPLE19
+
+=for comment filename=check_strings_ok.pl
+
+ use strict;
+ use warnings;
+
+ use Mo::utils qw(check_strings);
+
+ my $self = {
+         'key' => 'value',
+ };
+ check_strings($self, 'key', ['value', 'foo']);
+
+ # Print out.
+ print "ok\n";
+
+ # Output:
+ # ok
+
+=head1 EXAMPLE20
+
+=for comment filename=check_strings_fail.pl
+
+ use strict;
+ use warnings;
+
+ use Error::Pure;
+ use Mo::utils qw(check_strings);
+
+ $Error::Pure::TYPE = 'Error';
+
+ my $self = {
+         'key' => 'bar',
+ };
+ check_strings($self, 'key', ['foo', 'value']);
+
+ # Print out.
+ print "ok\n";
+
+ # Output like:
+ # #Error [...utils.pm:?] Parameter 'key' must be one of defined strings.
+
 =head1 DEPENDENCIES
 
 L<Exporter>,
 L<Error::Pure>,
+L<List::Utils>,
 L<Readonly>,
 L<Scalar::Util>.
 

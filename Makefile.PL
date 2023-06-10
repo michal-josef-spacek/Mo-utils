@@ -20,6 +20,7 @@ readme_from 'utils.pm';
 recursive_author_tests('xt');
 requires 'Error::Pure' => 0.15;
 requires 'Exporter' => 0;
+requires 'List::Util' => 1.33;
 requires 'Readonly' => 0;
 requires 'Scalar::Util' => 0;
 resources 'bugtracker' => 'https://github.com/michal-josef-spacek/Mo-utils/issues',

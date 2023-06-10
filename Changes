@@ -1,4 +1,5 @@
 0.15
+ - Add check_strings() subroutine.
  - Fix dependencies in doc.
  - Regen README file.
  - Update Module::Install to 1.21 version.
