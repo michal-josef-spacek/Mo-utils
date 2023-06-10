@@ -2,6 +2,7 @@
  - Add check_strings() subroutine.
  - Fix dependencies in doc.
  - Regen README file.
+ - Update copyright years.
  - Update Module::Install to 1.21 version.
 
 0.14 2022-09-28T18:17:25+02:00
