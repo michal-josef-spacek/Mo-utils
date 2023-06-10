@@ -875,6 +875,10 @@ Micro Objects. Mo is less.
 
 Mo language utilities.
 
+=item L<Wikibase::Datatype::Utils>
+
+Wikibase datatype utilities.
+
 =back
 
 =head1 REPOSITORY

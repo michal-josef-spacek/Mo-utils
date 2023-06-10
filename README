@@ -593,6 +593,9 @@ SEE ALSO
     Mo::utils::Language
         Mo language utilities.
 
+    Wikibase::Datatype::Utils
+        Wikibase datatype utilities.
+
 REPOSITORY
     <https://github.com/michal-josef-spacek/Mo-utils>
 
