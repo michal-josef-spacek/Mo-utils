@@ -1,6 +1,7 @@
 0.16
  - Add Mo::utils::Language to SEE ALSO section in doc.
  - Add Wikibase::Datatype::Utils to SEE ALSO section in doc.
+ - Fix indent in doc.
 
 0.15 2023-06-10T18:35:55+02:00
  - Add check_strings() subroutine.
