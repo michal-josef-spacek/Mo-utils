@@ -13,7 +13,7 @@ Readonly::Array our @EXPORT_OK => qw(check_array check_array_object check_bool
 	check_code check_isa check_length check_number check_number_of_items
 	check_required check_string_begin check_strings);
 
-our $VERSION = 0.16;
+our $VERSION = 0.17;
 
 sub check_array {
 	my ($self, $key) = @_;
@@ -979,6 +979,6 @@ BSD 2-Clause License
 
 =head1 VERSION
 
-0.16
+0.17
 
 =cut
