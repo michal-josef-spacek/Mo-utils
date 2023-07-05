@@ -1,4 +1,4 @@
-0.16
+0.16 2023-07-05T13:56:20+02:00
  - Add check_string_begin() function.
  - Add Mo::utils::Language to SEE ALSO section in doc.
  - Add Wikibase::Datatype::Utils to SEE ALSO section in doc.
