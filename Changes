@@ -1,4 +1,5 @@
 0.16
+ - Add check_string_begin() function.
  - Add Mo::utils::Language to SEE ALSO section in doc.
  - Add Wikibase::Datatype::Utils to SEE ALSO section in doc.
  - Fix indent in doc.

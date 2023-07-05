@@ -3,7 +3,7 @@ NAME
 
 SYNOPSIS
      use Mo::utils qw(check_array check_array_object check_bool check_code check_isa check_length check_number
-             check_number_of_items check_required check_strings);
+             check_number_of_items check_required check_string_begin check_strings);
 
      check_array($self, $key);
      check_array_object($self, $key, $class, $class_name);
@@ -14,6 +14,7 @@ SYNOPSIS
      check_number($self, $key);
      check_number_of_items($self, $list_method, $item_method, $object_name, $item_name);
      check_required($self, $key);
+     check_string_begin($self, $key, $string_base);
      check_strings($self, $key, $strings_ar);
 
 DESCRIPTION
@@ -107,6 +108,16 @@ SUBROUTINES
 
     Returns undef.
 
+  "check_string_begin"
+     check_string_begin($self, $key, $string_base);
+
+    Check parameter if it is correct string which begins with base.
+
+    Put error if string base doesn't exist. Put error string base isn't
+    present in string on begin.
+
+    Returns undef.
+
   "check_strings"
      check_strings($self, $key, $strings_ar);
 
@@ -153,6 +164,12 @@ ERRORS
 
      check_required():
              Parameter '%s' is required.
+
+     check_string_begin():
+             Parameter '%s' must have defined string base.
+             Parameter '%s' must begin with defined string base.
+                     String: %s
+                     String base: %s
 
      check_strings():
              Parameter '%s' must have strings definition.
@@ -552,6 +569,43 @@ EXAMPLE19
      use strict;
      use warnings;
 
+     use Mo::utils qw(check_string_begin);
+
+     my $self = {
+             'key' => 'http://example.com/foo',
+     };
+     check_string_begin($self, 'key', 'http://example.com/');
+
+     # Print out.
+     print "ok\n";
+
+     # Output:
+     # ok
+
+EXAMPLE20
+     use strict;
+     use warnings;
+
+     use Error::Pure;
+     use Mo::utils qw(check_string_begin);
+
+     $Error::Pure::TYPE = 'Error';
+
+     my $self = {
+             'key' => 'http://example/foo',
+     };
+     check_string_begin($self, 'key', 'http://example.com/');
+
+     # Print out.
+     print "ok\n";
+
+     # Output like:
+     # #Error [...utils.pm:?] Parameter 'key' must begin with defined string base.
+
+EXAMPLE21
+     use strict;
+     use warnings;
+
      use Mo::utils qw(check_strings);
 
      my $self = {
@@ -565,7 +619,7 @@ EXAMPLE19
      # Output:
      # ok
 
-EXAMPLE20
+EXAMPLE22
      use strict;
      use warnings;
 

@@ -11,7 +11,7 @@ use Scalar::Util qw(blessed);
 
 Readonly::Array our @EXPORT_OK => qw(check_array check_array_object check_bool
 	check_code check_isa check_length check_number check_number_of_items
-	check_required check_strings);
+	check_required check_string_begin check_strings);
 
 our $VERSION = 0.16;
 
@@ -157,6 +157,24 @@ sub check_required {
 	return;
 }
 
+sub check_string_begin {
+	my ($self, $key, $string_base) = @_;
+
+	_check_key($self, $key) && return;
+
+	if (! defined $string_base) {
+		err "Parameter '$key' must have defined string base.";
+	}
+	if ($self->{$key} !~ m/^$string_base/) {
+		err "Parameter '$key' must begin with defined string base.",
+			'String', $self->{$key},
+			'String base', $string_base,
+		;
+	}
+
+	return;
+}
+
 sub check_strings {
 	my ($self, $key, $strings_ar) = @_;
 
@@ -203,7 +221,7 @@ Mo::utils - Mo utilities.
 =head1 SYNOPSIS
 
  use Mo::utils qw(check_array check_array_object check_bool check_code check_isa check_length check_number
-         check_number_of_items check_required check_strings);
+         check_number_of_items check_required check_string_begin check_strings);
 
  check_array($self, $key);
  check_array_object($self, $key, $class, $class_name);
@@ -214,6 +232,7 @@ Mo::utils - Mo utilities.
  check_number($self, $key);
  check_number_of_items($self, $list_method, $item_method, $object_name, $item_name);
  check_required($self, $key);
+ check_string_begin($self, $key, $string_base);
  check_strings($self, $key, $strings_ar);
 
 =head1 DESCRIPTION
@@ -316,6 +335,17 @@ Put error if check isn't ok.
 
 Returns undef.
 
+=head2 C<check_string_begin>
+
+ check_string_begin($self, $key, $string_base);
+
+Check parameter if it is correct string which begins with base.
+
+Put error if string base doesn't exist.
+Put error string base isn't present in string on begin.
+
+Returns undef.
+
 =head2 C<check_strings>
 
  check_strings($self, $key, $strings_ar);
@@ -364,6 +394,12 @@ Returns undef.
 
  check_required():
          Parameter '%s' is required.
+
+ check_string_begin():
+         Parameter '%s' must have defined string base.
+         Parameter '%s' must begin with defined string base.
+                 String: %s
+                 String base: %s
 
  check_strings():
          Parameter '%s' must have strings definition.
@@ -815,6 +851,49 @@ Returns undef.
 
 =head1 EXAMPLE19
 
+=for comment filename=check_string_begin_ok.pl
+
+ use strict;
+ use warnings;
+
+ use Mo::utils qw(check_string_begin);
+
+ my $self = {
+         'key' => 'http://example.com/foo',
+ };
+ check_string_begin($self, 'key', 'http://example.com/');
+
+ # Print out.
+ print "ok\n";
+
+ # Output:
+ # ok
+
+=head1 EXAMPLE20
+
+=for comment filename=check_string_begin_fail.pl
+
+ use strict;
+ use warnings;
+
+ use Error::Pure;
+ use Mo::utils qw(check_string_begin);
+
+ $Error::Pure::TYPE = 'Error';
+
+ my $self = {
+         'key' => 'http://example/foo',
+ };
+ check_string_begin($self, 'key', 'http://example.com/');
+
+ # Print out.
+ print "ok\n";
+
+ # Output like:
+ # #Error [...utils.pm:?] Parameter 'key' must begin with defined string base.
+
+=head1 EXAMPLE21
+
 =for comment filename=check_strings_ok.pl
 
  use strict;
@@ -833,7 +912,7 @@ Returns undef.
  # Output:
  # ok
 
-=head1 EXAMPLE20
+=head1 EXAMPLE22
 
 =for comment filename=check_strings_fail.pl
 
