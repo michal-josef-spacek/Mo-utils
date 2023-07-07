@@ -4,7 +4,8 @@ TODO
 Same with error message of this subroutine.
 4. Add tests for error parameters (e.g. in check_isa()).
 5. Add some integration tests (with Mo). How?
-6.
+6. Add check_regexp()
+7.
 
 Applied
 =======
