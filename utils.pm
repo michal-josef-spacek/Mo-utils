@@ -11,7 +11,7 @@ use Scalar::Util qw(blessed);
 
 Readonly::Array our @EXPORT_OK => qw(check_array check_array_object check_bool
 	check_code check_isa check_length check_number check_number_of_items
-	check_required check_string_begin check_strings);
+	check_regexp check_required check_string_begin check_strings);
 
 our $VERSION = 0.17;
 
@@ -147,6 +147,24 @@ sub check_number_of_items {
 	return;
 }
 
+sub check_regexp {
+	my ($self, $key, $regexp) = @_;
+
+	_check_key($self, $key) && return;
+
+	if (! defined $regexp) {
+		err "Parameter '$key' must have defined regexp.";
+	}
+	if ($self->{$key} !~ m/^$regexp/ms) {
+		err "Parameter '$key' does not match the specified regular expression.",
+			'String', $self->{$key},
+			'Regexp', $regexp,
+		;
+	}
+
+	return;
+}
+
 sub check_required {
 	my ($self, $key) = @_;
 
@@ -221,7 +239,7 @@ Mo::utils - Mo utilities.
 =head1 SYNOPSIS
 
  use Mo::utils qw(check_array check_array_object check_bool check_code check_isa check_length check_number
-         check_number_of_items check_required check_string_begin check_strings);
+         check_number_of_items check_regexp check_required check_string_begin check_strings);
 
  check_array($self, $key);
  check_array_object($self, $key, $class, $class_name);
@@ -231,6 +249,7 @@ Mo::utils - Mo utilities.
  check_length($self, $key, $max_length);
  check_number($self, $key);
  check_number_of_items($self, $list_method, $item_method, $object_name, $item_name);
+ check_regexp($self, $key, $regexp);
  check_required($self, $key);
  check_string_begin($self, $key, $string_base);
  check_strings($self, $key, $strings_ar);
@@ -325,6 +344,16 @@ Put error if check isn't ok.
 
 Returns undef.
 
+=head2 C<check_regexp>
+
+ check_regexp($self, $key, $regexp);
+
+Check parameter defined by C<$key> via regular expression defined by c<$regexp>.
+
+Put error if check isn't ok.
+
+Returns undef.
+
 =head2 C<check_required>
 
  check_required($self, $key);
@@ -391,6 +420,12 @@ Returns undef.
 
  check_number_of_items():
          %s for %s '%s' has multiple values.
+
+ check_regexp():
+         Parameter '%s' must have defined regexp.
+         Parameter '%s' does not match the specified regular expression.
+                 String: %s
+                 Regexp: %s
 
  check_required():
          Parameter '%s' is required.
@@ -808,6 +843,49 @@ Returns undef.
 
 =head1 EXAMPLE17
 
+=for comment filename=check_regexp_ok.pl
+
+ use strict;
+ use warnings;
+
+ use Mo::utils qw(check_regexp);
+
+ my $self = {
+         'key' => 'https://example.com/1',
+ };
+ check_regexp($self, 'key', qr{^https://example\.com/\d+$});
+
+ # Print out.
+ print "ok\n";
+
+ # Output:
+ # ok
+
+=head1 EXAMPLE18
+
+=for comment filename=check_regexp_fail.pl
+
+ use strict;
+ use warnings;
+
+ use Error::Pure;
+ use Mo::utils qw(check_regexp);
+
+ $Error::Pure::TYPE = 'Error';
+
+ my $self = {
+         'key' => 'https://example.com/bad',
+ };
+ check_regexp($self, 'key', qr{^https://example\.com/\d+$});
+
+ # Print out.
+ print "ok\n";
+
+ # Output like:
+ # #Error [...utils.pm:?] Parameter 'key' does not match the specified regular expression.
+
+=head1 EXAMPLE19
+
 =for comment filename=check_required_ok.pl
 
  use strict;
@@ -816,7 +894,7 @@ Returns undef.
  use Mo::utils qw(check_required);
 
  my $self = {
-         'key' => 'value',
+	 'key' => 'value',
  };
  check_required($self, 'key');
 
@@ -826,7 +904,7 @@ Returns undef.
  # Output:
  # ok
 
-=head1 EXAMPLE18
+=head1 EXAMPLE20
 
 =for comment filename=check_required_fail.pl
 
@@ -839,7 +917,7 @@ Returns undef.
  $Error::Pure::TYPE = 'Error';
 
  my $self = {
-         'key' => undef,
+	 'key' => undef,
  };
  check_required($self, 'key');
 
@@ -849,7 +927,8 @@ Returns undef.
  # Output like:
  # #Error [...utils.pm:?] Parameter 'key' is required.
 
-=head1 EXAMPLE19
+
+=head1 EXAMPLE21
 
 =for comment filename=check_string_begin_ok.pl
 
@@ -869,7 +948,7 @@ Returns undef.
  # Output:
  # ok
 
-=head1 EXAMPLE20
+=head1 EXAMPLE22
 
 =for comment filename=check_string_begin_fail.pl
 
@@ -892,7 +971,7 @@ Returns undef.
  # Output like:
  # #Error [...utils.pm:?] Parameter 'key' must begin with defined string base.
 
-=head1 EXAMPLE21
+=head1 EXAMPLE23
 
 =for comment filename=check_strings_ok.pl
 
@@ -912,7 +991,7 @@ Returns undef.
  # Output:
  # ok
 
-=head1 EXAMPLE22
+=head1 EXAMPLE24
 
 =for comment filename=check_strings_fail.pl
 

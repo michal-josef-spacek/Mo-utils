@@ -3,7 +3,7 @@ NAME
 
 SYNOPSIS
      use Mo::utils qw(check_array check_array_object check_bool check_code check_isa check_length check_number
-             check_number_of_items check_required check_string_begin check_strings);
+             check_number_of_items check_regexp check_required check_string_begin check_strings);
 
      check_array($self, $key);
      check_array_object($self, $key, $class, $class_name);
@@ -13,6 +13,7 @@ SYNOPSIS
      check_length($self, $key, $max_length);
      check_number($self, $key);
      check_number_of_items($self, $list_method, $item_method, $object_name, $item_name);
+     check_regexp($self, $key, $regexp);
      check_required($self, $key);
      check_string_begin($self, $key, $string_base);
      check_strings($self, $key, $strings_ar);
@@ -99,6 +100,16 @@ SUBROUTINES
 
     Returns undef.
 
+  "check_regexp"
+     check_regexp($self, $key, $regexp);
+
+    Check parameter defined by $key via regular expression defined by
+    c<$regexp>.
+
+    Put error if check isn't ok.
+
+    Returns undef.
+
   "check_required"
      check_required($self, $key);
 
@@ -161,6 +172,12 @@ ERRORS
 
      check_number_of_items():
              %s for %s '%s' has multiple values.
+
+     check_regexp():
+             Parameter '%s' must have defined regexp.
+             Parameter '%s' does not match the specified regular expression.
+                     String: %s
+                     Regexp: %s
 
      check_required():
              Parameter '%s' is required.
@@ -532,6 +549,43 @@ EXAMPLE17
      use strict;
      use warnings;
 
+     use Mo::utils qw(check_regexp);
+
+     my $self = {
+             'key' => 'https://example.com/1',
+     };
+     check_regexp($self, 'key', qr{^https://example\.com/\d+$});
+
+     # Print out.
+     print "ok\n";
+
+     # Output:
+     # ok
+
+EXAMPLE18
+     use strict;
+     use warnings;
+
+     use Error::Pure;
+     use Mo::utils qw(check_regexp);
+
+     $Error::Pure::TYPE = 'Error';
+
+     my $self = {
+             'key' => 'https://example.com/bad',
+     };
+     check_regexp($self, 'key', qr{^https://example\.com/\d+$});
+
+     # Print out.
+     print "ok\n";
+
+     # Output like:
+     # #Error [...utils.pm:?] Parameter 'key' does not match the specified regular expression.
+
+EXAMPLE19
+     use strict;
+     use warnings;
+
      use Mo::utils qw(check_required);
 
      my $self = {
@@ -545,7 +599,7 @@ EXAMPLE17
      # Output:
      # ok
 
-EXAMPLE18
+EXAMPLE20
      use strict;
      use warnings;
 
@@ -565,7 +619,7 @@ EXAMPLE18
      # Output like:
      # #Error [...utils.pm:?] Parameter 'key' is required.
 
-EXAMPLE19
+EXAMPLE21
      use strict;
      use warnings;
 
@@ -582,7 +636,7 @@ EXAMPLE19
      # Output:
      # ok
 
-EXAMPLE20
+EXAMPLE22
      use strict;
      use warnings;
 
@@ -602,7 +656,7 @@ EXAMPLE20
      # Output like:
      # #Error [...utils.pm:?] Parameter 'key' must begin with defined string base.
 
-EXAMPLE21
+EXAMPLE23
      use strict;
      use warnings;
 
@@ -619,7 +673,7 @@ EXAMPLE21
      # Output:
      # ok
 
-EXAMPLE22
+EXAMPLE24
      use strict;
      use warnings;
 
