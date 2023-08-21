@@ -317,7 +317,7 @@ EXAMPLE6
      use warnings;
 
      use Error::Pure;
-     use Mo::utils qw(check_array_object);
+     use Mo::utils qw(check_array_required);
 
      $Error::Pure::TYPE = 'Error';
 
@@ -330,7 +330,7 @@ EXAMPLE6
      print "ok\n";
 
      # Output like:
-     # #Error [..utils.pm:?] TODO.
+     # #Error [..utils.pm:?] Parameter 'key' with array must have at least one item.
 
 EXAMPLE7
      use strict;
