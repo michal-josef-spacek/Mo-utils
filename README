@@ -164,6 +164,7 @@ ERRORS
              %s isn't '%s' object.
 
      check_array_required():
+             Parameter '%s' is required.
              Parameter '%s' must be a array.
                      Value: %s
                      Reference: %s

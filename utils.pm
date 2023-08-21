@@ -54,7 +54,7 @@ sub check_array_required {
 	my ($self, $key) = @_;
 
 	if (! exists $self->{$key}) {
-		return;
+		err "Parameter '$key' is required.";
 	}
 
 	check_array($self, $key);
@@ -433,6 +433,7 @@ Returns undef.
          %s isn't '%s' object.
 
  check_array_required():
+         Parameter '%s' is required.
          Parameter '%s' must be a array.
                  Value: %s
                  Reference: %s
