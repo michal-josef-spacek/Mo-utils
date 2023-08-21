@@ -35,6 +35,10 @@ sub check_array {
 sub check_array_object {
 	my ($self, $key, $class, $class_name) = @_;
 
+	if (! exists $self->{$key}) {
+		return;
+	}
+
 	check_array($self, $key);
 
 	foreach my $obj (@{$self->{$key}}) {
