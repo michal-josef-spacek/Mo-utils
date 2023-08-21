@@ -428,6 +428,8 @@ Returns undef.
 
  check_array_object():
          Parameter '%s' must be a array.
+                 Value: %s
+                 Reference: %s
          %s isn't '%s' object.
 
  check_array_required():
