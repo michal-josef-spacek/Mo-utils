@@ -457,7 +457,7 @@ Returns undef.
                  Value: %s
 
  check_number():
-         Parameter '%s' must a number.
+         Parameter '%s' must be a number.
                  Value: %s
 
  check_number_of_items():
