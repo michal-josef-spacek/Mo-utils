@@ -1,4 +1,5 @@
 0.20
+ - Add check_angle().
  - Fix error sentence for check_number() in doc.
  - Remove obsolete argument in check_number() in tests.
 
