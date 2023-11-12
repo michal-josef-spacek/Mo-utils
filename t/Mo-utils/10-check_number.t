@@ -48,12 +48,12 @@ is($ret, undef, 'Right number is present (negative number).');
 
 # Test.
 $self = {};
-$ret = check_number($self, 'key', 'Foo');
+$ret = check_number($self, 'key');
 is($ret, undef, 'Right not exist key.');
 
 # Test.
 $self = {
 	'key' => undef,
 };
-$ret = check_number($self, 'key', 'Foo');
+$ret = check_number($self, 'key');
 is($ret, undef, "Value is undefined, that's ok.");
