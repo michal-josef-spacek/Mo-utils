@@ -1,4 +1,4 @@
-0.20
+0.20 2023-11-12T12:29:40+01:00
  - Add check_angle().
  - Fix error sentence for check_number() in doc.
  - Remove obsolete argument in check_number() in tests.
