@@ -5,7 +5,8 @@ Same with error message of this subroutine.
 4. Add tests for error parameters (e.g. in check_isa()).
 5. Add some integration tests (with Mo). How?
 7. Common number range check. Rewrite check_angle() to it.
-8.
+8. Add minimal version of Mo::utils to subroutines in doc.
+9.
 
 Applied
 =======
