@@ -815,6 +815,9 @@ SEE ALSO
     Mo::utils::Language
         Mo language utilities.
 
+    Mo::utils::CSS
+        Mo CSS utilities.
+
     Wikibase::Datatype::Utils
         Wikibase datatype utilities.
 

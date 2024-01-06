@@ -1197,6 +1197,10 @@ Micro Objects. Mo is less.
 
 Mo language utilities.
 
+=item L<Mo::utils::CSS>
+
+Mo CSS utilities.
+
 =item L<Wikibase::Datatype::Utils>
 
 Wikibase datatype utilities.
