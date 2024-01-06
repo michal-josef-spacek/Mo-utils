@@ -1,5 +1,6 @@
 0.21
  - Add Mo::utils::CSS to SEE ALSO section in doc.
+ - Update copyright years.
 
 0.20 2023-11-12T12:29:40+01:00
  - Add check_angle().
