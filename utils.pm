@@ -59,9 +59,10 @@ sub check_array_object {
 	check_array($self, $key);
 
 	foreach my $obj (@{$self->{$key}}) {
-		if (! $obj->isa($class)) {
-			err $class_name." isn't '".$class."' object.";
-		}
+		_check_object($obj, $class,
+			'%s isn\'t \'%s\' object.',
+			[$class_name, $class],
+		);
 	}
 
 	return;
@@ -479,6 +480,8 @@ Returns undef.
                  Value: %s
                  Reference: %s
          %s isn't '%s' object.
+                 Value: %s
+                 Reference: %s
 
  check_array_required():
          Parameter '%s' is required.
