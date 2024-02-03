@@ -33,7 +33,7 @@ clean();
 # Test.
 my $mock = Test::MockObject->new;
 $mock->fake_module('Foo',
-	'new' => sub { return $self, 'Foo'; },
+	'new' => sub { return bless {}, 'Foo'; },
 );
 my $foo = Foo->new;
 $self = {
