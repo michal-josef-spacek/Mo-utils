@@ -115,26 +115,10 @@ sub check_isa {
 	my ($self, $key, $class) = @_;
 
 	_check_key($self, $key) && return;
-
-	if (! blessed($self->{$key})) {
-		err "Parameter '$key' must be a '$class' object.",
-
-			# Only, if value is scalar.
-			(ref $self->{$key} eq '') ? (
-				'Value', $self->{$key},
-			) : (),
-
-			# Only if value is reference.
-			(ref $self->{$key} ne '') ? (
-				'Reference', (ref $self->{$key}),
-			) : (),
-	}
-
-	if (! $self->{$key}->isa($class)) {
-		err "Parameter '$key' must be a '$class' object.",
-			'Reference', (ref $self->{$key}),
-		;
-	}
+	_check_object($self->{$key}, $class,
+		'Parameter \'%s\' must be a \'%s\' object.',
+		[$key, $class],
+	);
 
 	return;
 }
@@ -259,6 +243,34 @@ sub _check_key {
 	}
 
 	return 0;
+}
+
+sub _check_object {
+	my ($value, $class, $message, $message_params_ar) = @_;
+
+	if (! blessed($value)) {
+		my $err_message = sprintf $message, @{$message_params_ar};
+		err $err_message,
+
+			# Only, if value is scalar.
+			(ref $value eq '') ? (
+				'Value', $value,
+			) : (),
+
+			# Only if value is reference.
+			(ref $value ne '') ? (
+				'Reference', (ref $value),
+			) : (),
+	}
+
+	if (! $value->isa($class)) {
+		my $err_message = sprintf $message, @{$message_params_ar};
+		err $err_message,
+			'Reference', (ref $value),
+		;
+	}
+
+	return;
 }
 
 1;
