@@ -318,6 +318,8 @@ Mo utilities for checking of data objects.
 
  check_angle($self, $key);
 
+I<Since version 0.20.>
+
 Check parameter defined by C<$key> which is number between 0 and 360.
 
 Put error if check isn't ok.
@@ -328,6 +330,8 @@ Returns undef.
 
  check_array($self, $key);
 
+I<Since version 0.06.>
+
 Check parameter defined by C<$key> which is reference to array.
 
 Put error if check isn't ok.
@@ -337,6 +341,8 @@ Returns undef.
 =head2 C<check_array_object>
 
  check_array_object($self, $key, $class, $class_name);
+
+I<Since version 0.02. Described functionality since version 0.21.>
 
 Check parameter defined by C<$key> which is reference to array with instances
 of some object type (C<$class>). C<$class_name> is used to error message.
@@ -349,6 +355,8 @@ Returns undef.
 
  check_array_required($self, $key);
 
+I<Since version 0.18. Described functionality since version 0.19.>
+
 Check parameter defined by C<$key> which is reference to array for at least one
 value inside.
 
@@ -360,6 +368,8 @@ Returns undef.
 
  check_bool($self, $key);
 
+I<Since version 0.06.>
+
 Check parameter defined by C<$key> if value is bool or not.
 
 Put error if check isn't ok.
@@ -369,6 +379,8 @@ Returns undef.
 =head2 C<check_code>
 
  check_code($self, $key);
+
+I<Since version 0.12.>
 
 Check parameter defined by C<$key> which is code reference or no.
 
@@ -380,6 +392,8 @@ Returns undef.
 
  check_isa($self, $key, $class);
 
+I<Since version 0.01. Described functionality since version 0.08.>
+
 Check parameter defined by C<$key> which is instance of C<$class> or no.
 
 Put error if check isn't ok.
@@ -389,6 +403,8 @@ Returns undef.
 =head2 C<check_length>
 
  check_length($self, $key, $max_length);
+
+I<Since version 0.04. Described functionality since version 0.05.>
 
 Check length of value for parameter defined by C<$key>. Maximum length is
 defined by C<$max_length>.
@@ -401,6 +417,8 @@ Returns undef.
 
  check_number($self, $key);
 
+I<Since version 0.01. Described functionality since version 0.09.>
+
 Check parameter defined by C<$key> which is number (positive or negative) or no.
 
 Put error if check isn't ok.
@@ -410,6 +428,8 @@ Returns undef.
 =head2 C<check_number_of_items>
 
  check_number_of_items($self, $list_method, $item_method, $object_name, $item_name);
+
+I<Since version 0.01.>
 
 Check amount of unique items defined by C<$item_method> method value.
 List items via C<$list_method> and get value via C<$item_method> method.
@@ -423,6 +443,8 @@ Returns undef.
 
  check_regexp($self, $key, $regexp);
 
+I<Since version 0.17.>
+
 Check parameter defined by C<$key> via regular expression defined by c<$regexp>.
 
 Put error if check isn't ok.
@@ -432,6 +454,8 @@ Returns undef.
 =head2 C<check_required>
 
  check_required($self, $key);
+
+I<Since version 0.01.>
 
 Check required parameter defined by C<$key>.
 
@@ -443,6 +467,8 @@ Returns undef.
 
  check_string_begin($self, $key, $string_base);
 
+I<Since version 0.16.>
+
 Check parameter if it is correct string which begins with base.
 
 Put error if string base doesn't exist.
@@ -453,6 +479,8 @@ Returns undef.
 =head2 C<check_strings>
 
  check_strings($self, $key, $strings_ar);
+
+I<Since version 0.15.>
 
 Check parameter if it is correct string from strings list.
 
