@@ -1,4 +1,5 @@
 0.23
+ - Move error test in tests of check_number() to the end.
 
 0.22 2024-02-11T23:29:01+01:00
  - Add check_length_fix().
