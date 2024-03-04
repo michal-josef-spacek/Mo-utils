@@ -4,7 +4,6 @@ TODO
 Same with error message of this subroutine.
 4. Add tests for error parameters (e.g. in check_isa()).
 5. Add some integration tests (with Mo). How?
-7. Common number range check. Rewrite check_angle() to it.
 9. Remove Reference error value for check_array() if ref $value is ''.
 10. Error for check_array_object isn't fine.
 11. Add check for input arguments like number (check_number_range, check_length)
@@ -23,3 +22,6 @@ OK [20230709] skim
 
 8. Add minimal version of Mo::utils to subroutines in doc.
 OK [20240204] skim
+
+7. Common number range check. Rewrite check_angle() to it.
+OK [20240304] skim

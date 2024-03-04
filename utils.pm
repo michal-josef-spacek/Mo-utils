@@ -19,15 +19,7 @@ our $VERSION = 0.23;
 sub check_angle {
 	my ($self, $key) = @_;
 
-	_check_key($self, $key) && return;
-
-	check_number($self, $key);
-
-	if ($self->{$key} < 0 || $self->{$key} > 360) {
-		err "Parameter '".$key."' must be a number between 0 and 360.",
-			'Value', $self->{$key},
-		;
-	}
+	check_number_range($self, $key, 0, 360);
 
 	return;
 }
