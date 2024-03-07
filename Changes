@@ -1,5 +1,6 @@
 0.24
  - Add check_string().
+ - Add test for negative number in check_number_range().
  - Fix SYNOPSIS section in doc.
 
 0.23 2024-03-04T11:52:32+01:00
