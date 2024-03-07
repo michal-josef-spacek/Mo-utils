@@ -311,9 +311,9 @@ Mo::utils - Mo utilities.
 =head1 SYNOPSIS
 
  use Mo::utils qw(check_angle check_array check_array_object check_array_required
-         check_bool check_code check_isa check_length check_number
-         check_number_of_items check_regexp check_required check_string_begin
-         check_strings);
+         check_bool check_code check_isa check_length check_length_fix check_number
+         check_number_of_items check_number_range check_regexp check_required
+         check_string_begin check_strings);
 
  check_angle($self, $key);
  check_array($self, $key);
