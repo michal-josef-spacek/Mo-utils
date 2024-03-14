@@ -15,7 +15,7 @@ Readonly::Array our @EXPORT_OK => qw(check_angle check_array check_array_object
 	check_number_range check_regexp check_required check_string check_string_begin
 	check_strings);
 
-our $VERSION = 0.25;
+our $VERSION = 0.26;
 
 sub check_angle {
 	my ($self, $key) = @_;
@@ -1564,6 +1564,6 @@ BSD 2-Clause License
 
 =head1 VERSION
 
-0.25
+0.26
 
 =cut
