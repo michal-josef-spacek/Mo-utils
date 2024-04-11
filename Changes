@@ -1,3 +1,5 @@
+0.27
+
 0.26 2024-04-11T23:53:29+02:00
  - Add support for exponencial and extremely small numbers in
    check_number(). Rewrite to Scalar::Util::looks_like_number().
