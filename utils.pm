@@ -653,6 +653,8 @@ Returns undef.
                  Value: %s
 
  check_number_min():
+         Parameter '%s' must be a number.
+                 Value: %s
          Parameter '%s' must be greater than %s.
                  Value: %s
 
