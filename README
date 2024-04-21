@@ -189,7 +189,7 @@ SUBROUTINES
     *Since version 0.17.*
 
     Check parameter defined by $key via regular expression defined by
-    c<$regexp>.
+    $regexp.
 
     Put error if check isn't ok.
 

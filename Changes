@@ -1,4 +1,5 @@
 0.27
+ - Fix typo in doc.
 
 0.26 2024-04-11T23:53:29+02:00
  - Add support for exponencial and extremely small numbers in

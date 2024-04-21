@@ -542,7 +542,7 @@ Returns undef.
 
 I<Since version 0.17.>
 
-Check parameter defined by C<$key> via regular expression defined by c<$regexp>.
+Check parameter defined by C<$key> via regular expression defined by C<$regexp>.
 
 Put error if check isn't ok.
 
