@@ -1,5 +1,6 @@
 0.27
  - Fix typo in doc.
+ - Move right tests to begin of tests list in check_isa() tests.
 
 0.26 2024-04-11T23:53:29+02:00
  - Add support for exponencial and extremely small numbers in
