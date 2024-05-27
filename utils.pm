@@ -680,7 +680,7 @@ Returns undef.
          Parameter '%s' must be a number.
                  Value: %s
 
- check_nuber_id():
+ check_number_id():
          Parameter '%s' must be a natural number.
                  Value: %s
 
