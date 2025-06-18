@@ -720,11 +720,11 @@ Returns undef.
                  String base: %s
 
  check_strings():
-         Parameter '%s' must have strings definition.
-         Parameter '%s' must have right string definition.
          Parameter '%s' must be one of defined strings.
                  String: %s
                  Possible strings: %s
+         Parameter '%s' must have right string definition.
+         Parameter '%s' must have strings definition.
 
 =head1 EXAMPLE1
 
