@@ -1,4 +1,6 @@
 0.30
+ - In case of scalar reference in check_array() present 'SCALAR' value in
+   reference error parameter.
  - Sort check_strings() error messages in doc.
  - Update copyright years.
 

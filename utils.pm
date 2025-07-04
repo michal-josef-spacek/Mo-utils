@@ -33,9 +33,10 @@ sub check_array {
 	}
 
 	if (ref $self->{$key} ne 'ARRAY') {
+		my $ref = ref $self->{$key};
 		err "Parameter '".$key."' must be a array.",
 			'Value', $self->{$key},
-			'Reference', (ref $self->{$key}),
+			'Reference', ($ref eq '' ? 'SCALAR' : $ref),
 		;
 	}
 
