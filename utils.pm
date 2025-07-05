@@ -298,7 +298,7 @@ sub check_strings {
 	if (none { $self->{$key} eq $_ } @{$strings_ar}) {
 		err "Parameter '$key' must be one of defined strings.",
 			'String', $self->{$key},
-			'Possible strings', (join ', ', @{$strings_ar}),
+			'Possible strings', "'".(join "', '", @{$strings_ar})."'",
 		;
 	}
 
