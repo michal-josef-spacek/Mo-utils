@@ -1,4 +1,4 @@
-0.31
+0.31 2025-07-05T16:17:27+02:00
  - Change check_strings() error parameter with possible parameters to form
    with quotes.
 
